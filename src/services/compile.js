@@ -1,10 +1,10 @@
 const execa = require("execa");
 
 
-const compile = async () => {
+const compile = async (programType, filePath) => {
   return new Promise(async (resolve, reject)=>{
     try {
-      const { stdout } = await execa("node", ["./src/lol.js"]);
+      const { stdout } = await execa(programType, [filePath]);
       resolve(stdout);
     } catch (error) {
       console.error(error);
