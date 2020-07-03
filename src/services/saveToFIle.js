@@ -2,8 +2,8 @@ const shortId = require("shortid");
 const touch = require("touch");
 const path = require("path");
 const replace = require("replace-in-file");
-const  UglifyJS = require("uglify-js");
-const cryptoRandomString = require('crypto-random-string');
+const UglifyJS = require("uglify-js");
+const cryptoRandomString = require("crypto-random-string");
 
 const saveToFile = async (code, extension) => {
   try {
@@ -12,26 +12,27 @@ const saveToFile = async (code, extension) => {
       "..",
       "..",
       "files",
-      `${cryptoRandomString({length: 6, type: 'distinguishable'})}.${extension}`
+      `${cryptoRandomString({
+        length: 6,
+        type: "distinguishable",
+      })}.${extension}`
     );
     touch(filePath);
-    const data = UglifyJS.minify(code);
-    if(!data.error){
-      const options = {
-        files: filePath,
-        from: "",
-        to: data.code,
-      };
-      await replace(options);
-      return {
-        filePath,
-        error: null
-      }
-    }
+
+    const options = {
+      files: filePath,
+      from: "",
+      to: code,
+    };
+    await replace(options);
+    return {
+      filePath,
+      error: null,
+    };
   } catch (error) {
     return {
-      error
-    }
+      error,
+    };
   }
 };
 
@@ -47,5 +48,5 @@ console.log('lol');
 
 
 console.log('lol');
-`
+`;
 module.exports = saveToFile;
