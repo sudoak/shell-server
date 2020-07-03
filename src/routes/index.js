@@ -1,10 +1,10 @@
-const compileController = require('../controllers/compile')();
+const compileController = require("../controllers/compile")();
 
-const routes = require('express').Router();
+const routes = require("express").Router();
 
-routes.get('/compile', compileController.compile);
+routes.get("/compile", compileController.compile);
 
-routes.get('*', (req, res) => {
+routes.get("*", (req, res) => {
   res.redirect("http://google.com");
 });
 
