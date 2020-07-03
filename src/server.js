@@ -2,6 +2,8 @@ require('dotenv').config();
 
 const express = require('express');
 const rateLimit = require("express-rate-limit");
+const morgan = require('morgan')
+const routes = require('./routes');
 
 const app = express();
 
@@ -13,11 +15,11 @@ const limiter = rateLimit({
 
 app.use(express.json());
 app.use(limiter);
-
+app.use(morgan('tiny'));
 /** 
  * Routes
 */
-app.use("/",)
+app.use("/",routes);
 
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

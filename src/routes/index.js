@@ -1,11 +1,11 @@
+const compileController = require('../controllers/compile')();
+
 const routes = require('express').Router();
 
-routes.get('/compile', (req, res) => {
-  res.status(200).json({ message: 'Connected!' });
-});
+routes.get('/compile', compileController.compile);
 
 routes.get('*', (req, res) => {
-  res.redirect("www.google.com");
+  res.redirect("http://google.com");
 });
 
 module.exports = routes;
