@@ -11,7 +11,7 @@
 - Data params
   ```javascript
     {
-      type: js/python/java/gcc,
+      type: js/py/java/c,
       code: "console.log('Run')"
     }
   ```
