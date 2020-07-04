@@ -6,11 +6,16 @@ const compileController = () => {
     try {
       const { code, type } = req.body;
       const { filePath, error } = await saveToFile(code, type);
-      const output = await run(type, filePath);
-      res.send({output});
-      if(error){
-        throw new Error(error);
+      if(!error){
+        const { data, error} = await run(type, filePath);
+        if(!error){
+          res.send({output: data});
+          return
+        }
+        res.send({error});
+        return
       }
+      res.send({error});
     } catch (error) {
       next(error);
     }

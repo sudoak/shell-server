@@ -2,7 +2,9 @@ require('dotenv').config();
 
 const express = require('express');
 const rateLimit = require("express-rate-limit");
-const morgan = require('morgan')
+const morgan = require('morgan');
+const cors = require('cors');
+
 const routes = require('./routes');
 const handleErrors = require('./utils/handleErrors');
 const app = express();
@@ -13,6 +15,7 @@ const limiter = rateLimit({
   max: 500
 });
 
+app.use(cors());
 app.use(express.json());
 app.use(limiter);
 app.use(morgan('tiny'));
